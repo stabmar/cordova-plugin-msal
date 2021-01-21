@@ -84,11 +84,11 @@
     }
     
     self.config = [[MSALPublicClientApplicationConfig alloc] initWithClientId:[self clientId] redirectUri:[NSString stringWithFormat:@"msauth.%@://auth", [[NSBundle mainBundle] bundleIdentifier]] authority:defaultAuthority];
-    [self.config setKnownAuthorities:[[NSArray<MSALAuthority *> alloc] initWithArray:allAuthorities copyItems:YES]];
+    //[self.config setKnownAuthorities:[[NSArray<MSALAuthority *> alloc] initWithArray:allAuthorities copyItems:YES]];
     [self.config setMultipleCloudsSupported:[options objectForKey:@"multipleCloudsSupported"] == [NSNumber numberWithBool:YES]];
     if ([options objectForKey:@"brokerRedirectUri"] == [NSNumber numberWithBool:NO])
     {
-        MSALGlobalConfig.brokerAvailability = MSALBrokeredAvailabilityNone;
+        MSALGlobalConfig.brokerAvailability = MSALBrokeredAvailabilityAuto;
     }
     self.application = [[MSALPublicClientApplication alloc] initWithConfiguration:[self config] error:&msalError];
     self.scopes = [options objectForKey:@"scopes"];
